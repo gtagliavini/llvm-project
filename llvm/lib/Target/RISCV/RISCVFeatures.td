@@ -1085,3 +1085,11 @@ def FeatureTaggedGlobals : SubtargetFeature<"tagged-globals",
     "AllowTaggedGlobals",
     "true", "Use an instruction sequence for taking the address of a global "
     "that allows a memory tag in the upper address bits">;
+
+// FIR Extension
+def FeatureExtXfir
+    : SubtargetFeature<"xfir", "HasExtXfir", "true",
+                       "'Xfir' (FIR extension)">;
+def HasExtXfir : Predicate<"Subtarget->hasExtXfir()">,
+                           AssemblerPredicate<(all_of FeatureExtXfir),
+                           "'Xfir' (FIR extension)">;
