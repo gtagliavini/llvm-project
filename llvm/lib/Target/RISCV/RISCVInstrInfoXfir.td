@@ -73,14 +73,23 @@ def XFIRSW : RVInstS<0b001, OPC_CUSTOM_2, (outs GPR:$rs1_wb),
   let Constraints = "$rs1 = $rs1_wb";
 }
 
+let hasSideEffects = 1,  mayLoad = 0, mayStore = 0 in
+def XFIRDOTP : RVInstR<0b0000000, 0b010, OPC_CUSTOM_2, (outs),
+                      (ins uimm5:$rd, uimm5:$rs1, uimm5:$rs2),
+                      "xfirdotp", "$rd, $rs1, $rs2">,
+               Sched<[]>;
 
-// Instrinsics
+
+// Intrinsics
 
 def : Pat<(int_riscv_xfir_lw tuimm5:$rd, GPR:$rs1, tsimm12:$imm12),
           (XFIRLW tuimm5:$rd, GPR:$rs1, tsimm12:$imm12)>;
 
 def : Pat<(int_riscv_xfir_sw GPR:$rs1, tuimm5:$rs2, tuimm5:$rs_a, tsimm7:$rs_b),
           (XFIRSW GPR:$rs1, tuimm5:$rs2, tuimm5:$rs_a, tsimm7:$rs_b)>;
+
+def : Pat<(int_riscv_xfir_dotp tuimm5:$rd, tuimm5:$rs1,  tuimm5:$rs2),
+          (XFIRDOTP tuimm5:$rd, tuimm5:$rs1, tuimm5:$rs2)>;
 
 
 }

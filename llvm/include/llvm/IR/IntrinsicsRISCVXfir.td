@@ -31,4 +31,11 @@ let TargetPrefix = "riscv" in {
                   [IntrWriteMem, ImmArg<ArgIndex<1>>, ImmArg<ArgIndex<2>>, ImmArg<ArgIndex<3>>]>,
         RISCVFIRIntrinsic;
 
+  def int_riscv_xfir_dotp
+      : ClangBuiltin<"__builtin_xfir_dotp">,
+        Intrinsic<[],
+                  [llvm_i32_ty, llvm_i32_ty, llvm_i32_ty],
+                  [IntrNoMem, IntrHasSideEffects, ImmArg<ArgIndex<0>>, ImmArg<ArgIndex<1>>, ImmArg<ArgIndex<2>>]>,
+        RISCVFIRIntrinsic;
+
 }

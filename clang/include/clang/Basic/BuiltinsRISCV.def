@@ -92,6 +92,7 @@ TARGET_BUILTIN(__builtin_riscv_ntl_store, "v.", "t", "zihintntl")
 // Xfir extension
 TARGET_BUILTIN(__builtin_xfir_lw, "i*Iii*Ii", "n", "xfir")
 TARGET_BUILTIN(__builtin_xfir_sw, "i*i*IiIiIi", "n", "xfir")
+TARGET_BUILTIN(__builtin_xfir_dotp, "vIiIiIi", "n", "xfir")
 
 #undef BUILTIN
 #undef TARGET_BUILTIN
